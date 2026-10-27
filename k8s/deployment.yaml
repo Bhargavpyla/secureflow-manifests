@@ -23,14 +23,25 @@ spec:
       containers:
         - name: app
           image: ghcr.io/bhargavpyla/secureflow-app:a07c5f7
+
           ports:
             - containerPort: 8080
+
+          # Neon PostgreSQL connection
+          env:
+            - name: NEON_URL
+              valueFrom:
+                secretKeyRef:
+                  name: secureflow-neon
+                  key: NEON_URL
+
           readinessProbe:
             httpGet:
               path: /health
               port: 8080
             initialDelaySeconds: 3
             periodSeconds: 5
+
           livenessProbe:
             httpGet:
               path: /health
@@ -39,6 +50,7 @@ spec:
             periodSeconds: 10
             timeoutSeconds: 3
             failureThreshold: 3
+
           resources:
             requests:
               cpu: 100m
@@ -46,6 +58,7 @@ spec:
             limits:
               cpu: 500m
               memory: 256Mi
+
           securityContext:
             runAsNonRoot: true
             runAsUser: 10001
