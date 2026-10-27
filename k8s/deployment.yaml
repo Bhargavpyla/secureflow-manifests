@@ -33,7 +33,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: secureflow-neon
-                  key: postgresql://neondb_owner:npg_c5ZOoeQf7Wqv@ep-polished-feather-b7rhqrp5-pooler.c-13.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require
+                  key: NEON_URL
 
           readinessProbe:
             httpGet:
