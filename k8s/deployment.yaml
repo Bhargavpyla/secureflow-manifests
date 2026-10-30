@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: ghcr.io/bhargavpyla/secureflow-app:b527f4a
+          image: ghcr.io/bhargavpyla/secureflow-app:b528f80
 
           ports:
             - containerPort: 8080
